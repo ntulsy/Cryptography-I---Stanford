@@ -1,19 +1,19 @@
 __author__ = 'Siyao'
 
 
-def read_in_chunks(filename, chunk_size=10240):
+def read_in_chunks(filename, chunk_size=1024):
     blocks = []
     with open(filename, 'rb') as f:
         data = None
         while data != '':
-            data = f.read(1024)
+            data = f.read(chunk_size)
             if data != '':
                 blocks.insert(0, data)
     return blocks
 
 
 if __name__ == '__main__':
-    file_blocks = read_in_chunks('target.mp4')
+    file_blocks = read_in_chunks('test.mp4')
 
     from Crypto.Hash import SHA256
     previous_sha = ''
